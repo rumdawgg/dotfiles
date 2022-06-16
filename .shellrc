@@ -58,3 +58,6 @@ weather() {
     curl "v2d.wttr.in/${1:-Tewksbury}"
 }
 
+export EDITOR=nvim
+export BROWSER=firefox
+export TERMINAL=kitty
