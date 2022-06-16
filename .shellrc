@@ -1,0 +1,60 @@
+function ssmrdp()
+{
+  if [ "$#" -ne 1 ]; then echo 'Usage: ssmrdp <instance id>'; return 1; fi
+  aws ssm start-session --target $1 --document-name AWS-StartPortForwardingSession --parameters '{"portNumber":["3389"],"localPortNumber":["3389"]}'
+}
+function ssm()
+{
+  if [ "$#" -ne 1 ]; then echo "Usage: ssm <instance id>"; return 1; fi
+  aws ssm start-session --target "$1"
+}
+function decodests()
+{
+  if [ "$#" -ne 1 ]; then echo "Usage: decodests <encrypted message>"; return 1; fi
+  aws sts decode-authorization-message --encoded-message ${1} --query DecodedMessage --output text | jq '.'
+}
+
+export AWS_PAGER=
+export PATH=$HOME/bin:$PATH
+
+alias dmesg='dmesg -e'
+alias ls='ls --group-directories-first --color'
+alias ll='ls -lhF'
+alias la='ls -lha'
+alias lt='ls -lhtr'
+alias lta='ls -lhatr'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias please="sudo !!"
+alias work="cd ~/Work"
+alias co.="code ."
+alias pp='sudo pacman -Syu'
+alias orphans='[[ -n $(pacman -Qdt) ]] && sudo pacman -Rs $(pacman -Qdtq) || echo "no orphans to remove"'
+#alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
+upp() {
+  # update mirror list via reflector
+  for i in 1 3 6; do
+    if reflector -c US -a $i -p https -l 5 --sort score --save /etc/pacman.d/mirrorlist.reflector 2>/dev/null; then
+      cat /etc/pacman.d/mirrorlist.reflector
+      sudo pacman -Syu
+      return 0
+    fi
+  done
+  echo "--> cannot find a single mirror with sync time in the last 6 hours"
+  return 1
+}
+
+# Weather
+weather() {
+    curl "v2d.wttr.in/${1:-Tewksbury}"
+}
+
