@@ -1,0 +1,105 @@
+[aws]
+symbol = "  "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[rust]
+symbol = " "
+
+# # Move the directory to the second line
+# format = "$all$directory$character"
+# add_newline = false
+
+# [nodejs]
+# disabled = true
+
+# [[battery.display]]
+# threshold = 25
+# style = "bold red"
+
+# [hostname]
+# ssh_only = false
+# format = "@[$hostname](bold red) "
+# trim_at = ".local"
+# disabled = false
+
+# [terraform]
+# disabled = true
+
+# [python]
+# format = "[$symbol$version]($style) "
+# style = "bold green"
+
+# [time]
+# time_format = "%R"
+# #format = "$time($style) "
+# format = "at [$time]($style) "
+# style = "dimmed green"
+# disabled = false
+
+# [username]
+# style_user = "bold dimmed blue"
+# show_always = true
+
+# # Disable the package module, hiding it from the prompt completely
+# [package]
+# disabled = false
+
+# [cmd_duration]
+# min_time = 5000
+# show_milliseconds = false
+# disabled = false
+# format="'$duration sire... (italic #87A752)"
+
+# [directory]
+# truncation_length = 5
+# format = "[$path]($style)[$read_only]($read_only_style) "
+# style = "bold #f57800"
+# read_only = "🔒"
+# read_only_style= "bold white"
