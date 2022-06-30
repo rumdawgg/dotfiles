@@ -9,6 +9,7 @@ export TERMINAL=kitty
 export AWS_PAGER=
 export PATH=$HOME/bin:$PATH
 
+# aliases
 alias dmesg='dmesg -e'
 alias ls='ls --group-directories-first --color'
 alias ll='ls -lhF'
@@ -32,6 +33,11 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 # fi
 
+# initalize shell functions
+source $HOME/.functions
+
+# initialize base16 colors
 [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
 
+# activate NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
