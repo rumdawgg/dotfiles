@@ -1,0 +1,35 @@
+#
+# shell functions
+#
+
+function ssmrdp() {
+  if [ "$#" -ne 1 ]; then echo 'Usage: ssmrdp <instance id>'; return 1; fi
+  aws ssm start-session --target $1 --document-name AWS-StartPortForwardingSession --parameters '{"portNumber":["3389"],"localPortNumber":["3389"]}'
+}
+
+function ssm() {
+  if [ "$#" -ne 1 ]; then echo "Usage: ssm <instance id>"; return 1; fi
+  aws ssm start-session --target "$1"
+}
+
+function decodests() {
+  if [ "$#" -ne 1 ]; then echo "Usage: decodests <encrypted message>"; return 1; fi
+  aws sts decode-authorization-message --encoded-message ${1} --query DecodedMessage --output text | jq '.'
+}
+
+function upp() {
+  # update mirror list via reflector
+  for i in 1 3 6; do
+    if reflector -c US -a $i -p https -l 5 --sort score --save /etc/pacman.d/mirrorlist.reflector 2>/dev/null; then
+      cat /etc/pacman.d/mirrorlist.reflector
+      sudo pacman -Syu
+      return 0
+    fi
+  done
+  echo "--> cannot find a single mirror with sync time in the last 6 hours"
+  return 1
+}
+
+function weather() {
+  curl "v2d.wttr.in/${1:-Tewksbury}"
+}
