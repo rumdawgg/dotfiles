@@ -1,3 +1,11 @@
+#
+# starship.toml
+#
+
+#format = """$character"""
+format = "$character $username$hostname $package"
+
+
 [aws]
 symbol = "  "
 
@@ -55,7 +63,6 @@ symbol = " "
 # # Move the directory to the second line
 # format = "$all$directory$character"
 # add_newline = false
-
 # [nodejs]
 # disabled = true
 
@@ -63,11 +70,11 @@ symbol = " "
 # threshold = 25
 # style = "bold red"
 
-# [hostname]
-# ssh_only = false
-# format = "@[$hostname](bold red) "
-# trim_at = ".local"
-# disabled = false
+[hostname]
+ssh_only = false
+format = "@[$hostname](bold red) "
+trim_at = ".local"
+disabled = false
 
 # [terraform]
 # disabled = true
@@ -83,9 +90,9 @@ symbol = " "
 # style = "dimmed green"
 # disabled = false
 
-# [username]
-# style_user = "bold dimmed blue"
-# show_always = true
+[username]
+style_user = "bold dimmed blue"
+show_always = true
 
 # # Disable the package module, hiding it from the prompt completely
 # [package]
