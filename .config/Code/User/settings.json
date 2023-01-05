@@ -14,5 +14,7 @@
     "editor.formatOnSave": true,
     "editor.cursorStyle": "block",
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
+    "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "none"
 }
