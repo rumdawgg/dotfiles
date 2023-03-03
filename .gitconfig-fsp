@@ -1,0 +1,9 @@
+[user]
+  email = pchicarello@flagshippioneering.com
+  name = Paul Chicarello
+[init]
+  defaultBranch = main
+[push]
+  autoSetupRemote = true
+[pull]
+  rebase = false

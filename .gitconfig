@@ -1,0 +1,11 @@
+[user]
+  email = chicarellop@gmail.com
+  name = Paul Chicarello
+[init]
+  defaultBranch = main
+[push]
+  autoSetupRemote = true
+[pull]
+  rebase = false
+[includeIf "gitdir:~/Work/fsp/"]
+  path = ~/.gitconfig-fsp
